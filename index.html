@@ -9,13 +9,33 @@
   <link href='/style.css' rel='stylesheet'>
 </head>
 <body>
-  <h1>Lottery Number Generator</h1>
-  <div id="lotto-container">
-    <button id="lotto-btn">Generate Numbers</button>
-    <div id="lotto-numbers"></div>
-    <div id="image-container">
-      <img id="result-image" src="" alt="Result image" style="display: none;" />
+  <header>
+    <h1>Lottery Number Generator</h1>
+  </header>
+
+  <main>
+    <section id="intro">
+      <h2>Welcome to the Lottery Number Generator!</h2>
+      <p>This simple tool helps you generate random, unique numbers for your lottery tickets. Click the button below to get your lucky numbers!</p>
+    </section>
+
+    <div id="lotto-container">
+      <button id="lotto-btn">Generate Numbers</button>
+      <div id="lotto-numbers"></div>
+      <div id="image-container">
+        <img id="result-image" src="" alt="Result image" style="display: none;" />
+      </div>
     </div>
+
+    <section id="fun-facts">
+      <h2>Did you know?</h2>
+      <ul>
+        <li>The largest lottery jackpot in history was over $2 billion!</li>
+        <li>The odds of winning the Powerball jackpot are about 1 in 292.2 million.</li>
+        <li>Some people play the same numbers every week, while others prefer random picks.</li>
+      </ul>
+    </section>
+
     <!-- Google AdSense Placeholder -->
     <ins class="adsbygoogle"
          style="display:block"
@@ -26,7 +46,12 @@
     <script>
          (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-  </div>
+  </main>
+
+  <footer>
+    <p>Created with Gemini</p>
+  </footer>
+
   <script defer type="text/javascript" src="/main.js"></script>
 </body>
 </html>
