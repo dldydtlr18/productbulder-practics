@@ -13,6 +13,7 @@ body {
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 8px;
+  min-width: 300px; /* Prevent container from shrinking */
 }
 
 #lotto-btn {
@@ -25,4 +26,12 @@ body {
 #lotto-numbers {
   font-size: 24px;
   font-weight: bold;
+  height: 30px; /* Give a fixed height */
+  min-width: 200px; /* Give a fixed min-width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 5px;
 }
