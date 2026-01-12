@@ -33,20 +33,59 @@ section {
   background-color: #fafafa;
 }
 
+#lotto-grid-container {
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 450px;
+}
+
+#lotto-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.grid-number {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.grid-number.selected {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+#generation-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+#generation-controls span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
 #lotto-btn {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #dc3545;
   color: white;
   border: none;
   border-radius: 4px;
-  display: block;
-  margin: 20px auto;
 }
 
 #lotto-btn:hover {
-  background-color: #0056b3;
+  background-color: #c82333;
 }
 
 #lotto-numbers {
@@ -83,30 +122,6 @@ section {
   margin-right: 10px;
   font-size: 18px;
   color: #007bff;
-}
-
-#number-selection-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.number-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.number-btn.selected {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
 }
 
 .adsbygoogle {

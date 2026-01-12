@@ -1,26 +1,26 @@
 const lottoBtn = document.getElementById('lotto-btn');
 const lottoRows = document.querySelectorAll('.lotto-row');
-const numberSelectionContainer = document.getElementById('number-selection-container');
+const lottoGrid = document.getElementById('lotto-grid');
 
 const selectedNumbers = new Set();
 
-// Create number selection buttons
+// Create number grid
 for (let i = 1; i <= 45; i++) {
-  const btn = document.createElement('button');
-  btn.classList.add('number-btn');
-  btn.textContent = i;
-  btn.addEventListener('click', () => {
+  const gridNumber = document.createElement('div');
+  gridNumber.classList.add('grid-number');
+  gridNumber.textContent = i;
+  gridNumber.addEventListener('click', () => {
     if (selectedNumbers.has(i)) {
       selectedNumbers.delete(i);
-      btn.classList.remove('selected');
+      gridNumber.classList.remove('selected');
     } else {
       if (selectedNumbers.size < 6) {
         selectedNumbers.add(i);
-        btn.classList.add('selected');
+        gridNumber.classList.add('selected');
       }
     }
   });
-  numberSelectionContainer.appendChild(btn);
+  lottoGrid.appendChild(gridNumber);
 }
 
 lottoBtn.addEventListener('click', () => {
@@ -42,7 +42,7 @@ lottoBtn.addEventListener('click', () => {
 
   // Clear selection
   selectedNumbers.clear();
-  document.querySelectorAll('.number-btn.selected').forEach(btn => {
-    btn.classList.remove('selected');
+  document.querySelectorAll('.grid-number.selected').forEach(gridNumber => {
+    gridNumber.classList.remove('selected');
   });
 });
