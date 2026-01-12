@@ -50,17 +50,39 @@ section {
 }
 
 #lotto-numbers {
-  font-size: 24px;
+  font-size: 18px; /* Adjusted font size */
   font-weight: bold;
-  height: 30px;
-  min-width: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #eee;
-  border-radius: 4px;
   padding: 5px;
   margin: 0 auto;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  min-width: 200px; /* Kept min-width */
+}
+
+.lotto-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: center; /* Center the numbers in the row */
+}
+
+.lotto-label {
+  margin-right: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.lotto-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #007bff;
+  margin-right: 10px;
+  font-size: 18px;
+  color: #007bff;
 }
 
 #image-container {
