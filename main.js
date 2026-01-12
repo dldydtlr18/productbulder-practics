@@ -1,6 +1,7 @@
 const lottoBtn = document.getElementById('lotto-btn');
 const lottoRows = document.querySelectorAll('.lotto-row');
 const lottoGrid = document.getElementById('lotto-grid');
+const apiWinningNumbersDiv = document.getElementById('api-winning-numbers');
 
 const selectedNumbers = new Set();
 const allGridNumberButtons = []; // Store references to all grid number buttons
@@ -101,3 +102,42 @@ commentForm.addEventListener('submit', (event) => {
     commentTextInput.value = '';
   }
 });
+
+// --- API Integration for Winning Numbers ---
+const LATEST_LOTTO_ROUND = 1206; // Hardcoded for now, will find a way to get this dynamically later if needed.
+
+async function fetchAndDisplayWinningNumbers(roundNumber) {
+  const apiUrl = `https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=${roundNumber}`;
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    if (data.returnValue === 'success') {
+      const winningNumbers = [
+        data.drwtNo1, data.drwtNo2, data.drwtNo3,
+        data.drwtNo4, data.drwtNo5, data.drwtNo6
+      ].sort((a, b) => a - b);
+      const bonusNumber = data.bnusNo;
+      const drwNoDate = data.drwNoDate;
+
+      let winningNumbersHtml = `<h4>${roundNumber}회 당첨결과 (${drwNoDate})</h4>`;
+      winningNumbersHtml += `<div class="winning-numbers-display">`;
+      winningNumbers.forEach(num => {
+        winningNumbersHtml += `<span class="winning-number-ball">${num}</span>`;
+      });
+      winningNumbersHtml += `<span class="bonus-number-plus">+</span>`;
+      winningNumbersHtml += `<span class="winning-number-ball bonus-number-ball">${bonusNumber}</span>`;
+      winningNumbersHtml += `</div>`;
+
+      apiWinningNumbersDiv.innerHTML = winningNumbersHtml;
+    } else {
+      apiWinningNumbersDiv.innerHTML = `<p>최신 로또 당첨 번호를 불러오는데 실패했습니다. (${data.returnValue})</p>`;
+    }
+  } catch (error) {
+    console.error('Error fetching lotto winning numbers:', error);
+    apiWinningNumbersDiv.innerHTML = `<p>로또 당첨 번호를 불러오는 중 오류가 발생했습니다.</p>`;
+  }
+}
+
+// Fetch and display winning numbers on page load
+fetchAndDisplayWinningNumbers(LATEST_LOTTO_ROUND);

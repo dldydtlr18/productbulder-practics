@@ -285,3 +285,74 @@ main {
     max-width: 100%; /* Allow comments display to take full width */
   }
 }
+
+#api-winning-numbers {
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #007bff;
+  border-radius: 8px;
+  background-color: #e6f2ff;
+  text-align: center;
+}
+
+#api-winning-numbers h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #0056b3;
+  font-size: 1.2em;
+}
+
+#api-winning-numbers .winning-numbers-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap; /* Allow numbers to wrap on smaller screens */
+}
+
+#api-winning-numbers .winning-number-ball {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#api-winning-numbers .bonus-number-plus {
+  font-size: 2em;
+  font-weight: bold;
+  color: #0056b3;
+}
+
+#api-winning-numbers .bonus-number-ball {
+  background-color: #28a745; /* Green for bonus */
+}
+
+/* Media query adjustments for API winning numbers */
+@media (max-width: 600px) {
+  #api-winning-numbers {
+    padding: 10px;
+    margin: 15px auto;
+  }
+
+  #api-winning-numbers h4 {
+    font-size: 1em;
+    margin-bottom: 8px;
+  }
+
+  #api-winning-numbers .winning-number-ball {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2em;
+  }
+
+  #api-winning-numbers .bonus-number-plus {
+    font-size: 1.5em;
+  }
+}
