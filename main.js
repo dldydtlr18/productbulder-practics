@@ -52,7 +52,21 @@ const commentNameInput = document.getElementById('comment-name');
 const commentTextInput = document.getElementById('comment-text');
 const commentsDisplay = document.getElementById('comments-display');
 
-const comments = []; // Array to store comments
+// Initialize comments from localStorage
+let comments = JSON.parse(localStorage.getItem('lottoComments')) || [];
+
+function renderComments() {
+  commentsDisplay.innerHTML = '';
+  comments.forEach(commentEntryData => {
+    const commentEntryElement = document.createElement('div');
+    commentEntryElement.classList.add('comment-entry');
+    commentEntryElement.innerHTML = `<strong>${commentEntryData.name}:</strong><p>${commentEntryData.commentText}</p>`;
+    commentsDisplay.appendChild(commentEntryElement);
+  });
+}
+
+// Render comments on page load
+renderComments();
 
 commentForm.addEventListener('submit', (event) => {
   event.preventDefault(); // Prevent default form submission
@@ -69,14 +83,11 @@ commentForm.addEventListener('submit', (event) => {
       comments.shift(); // Remove the oldest comment
     }
 
-    // Clear and re-render comments display
-    commentsDisplay.innerHTML = '';
-    comments.forEach(commentEntryData => {
-      const commentEntryElement = document.createElement('div');
-      commentEntryElement.classList.add('comment-entry');
-      commentEntryElement.innerHTML = `<strong>${commentEntryData.name}:</strong><p>${commentEntryData.commentText}</p>`;
-      commentsDisplay.appendChild(commentEntryElement);
-    });
+    // Save comments to localStorage
+    localStorage.setItem('lottoComments', JSON.stringify(comments));
+
+    // Re-render comments display
+    renderComments();
 
     // Clear input fields
     commentNameInput.value = '';
