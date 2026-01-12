@@ -216,3 +216,72 @@ main {
   line-height: 1.5;
   font-size: 12px;
 }
+
+@media (max-width: 600px) {
+  main {
+    padding: 10px;
+  }
+
+  #app-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #lotto-grid-container,
+  #lotto-container {
+    flex: none; /* Reset flex */
+    width: 100%; /* Take full width */
+    padding: 10px;
+  }
+
+  #lotto-grid {
+    grid-template-columns: repeat(6, 1fr); /* Adjust grid for smaller screens */
+    gap: 3px;
+  }
+
+  .grid-number {
+    font-size: 12px;
+    padding: 3px;
+  }
+
+  #generation-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #lotto-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .lotto-label {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  .lotto-number {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+    margin-right: 5px;
+  }
+
+  #comments-section h2,
+  #comments-display h3 {
+    text-align: center; /* Re-center headings on mobile for better aesthetics */
+  }
+
+  #comment-form {
+    max-width: 100%; /* Allow form to take full width */
+    padding: 10px;
+    margin: 0 auto 15px auto; /* Re-center form on mobile */
+  }
+
+  #comment-form button[type="submit"] {
+    align-self: center; /* Re-center button */
+  }
+
+  #comments-display {
+    max-width: 100%; /* Allow comments display to take full width */
+  }
+}
