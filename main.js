@@ -46,3 +46,26 @@ lottoBtn.addEventListener('click', () => {
     gridNumber.classList.remove('selected');
   });
 });
+
+const commentForm = document.getElementById('comment-form');
+const commentNameInput = document.getElementById('comment-name');
+const commentTextInput = document.getElementById('comment-text');
+const commentsDisplay = document.getElementById('comments-display');
+
+commentForm.addEventListener('submit', (event) => {
+  event.preventDefault(); // Prevent default form submission
+
+  const name = commentNameInput.value.trim();
+  const comment = commentTextInput.value.trim();
+
+  if (name && comment) {
+    const commentEntry = document.createElement('div');
+    commentEntry.classList.add('comment-entry');
+    commentEntry.innerHTML = `<strong>${name}:</strong><p>${comment}</p>`;
+    commentsDisplay.appendChild(commentEntry);
+
+    // Clear input fields
+    commentNameInput.value = '';
+    commentTextInput.value = '';
+  }
+});
