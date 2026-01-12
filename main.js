@@ -52,17 +52,31 @@ const commentNameInput = document.getElementById('comment-name');
 const commentTextInput = document.getElementById('comment-text');
 const commentsDisplay = document.getElementById('comments-display');
 
+const comments = []; // Array to store comments
+
 commentForm.addEventListener('submit', (event) => {
   event.preventDefault(); // Prevent default form submission
 
   const name = commentNameInput.value.trim();
-  const comment = commentTextInput.value.trim();
+  const commentText = commentTextInput.value.trim();
 
-  if (name && comment) {
-    const commentEntry = document.createElement('div');
-    commentEntry.classList.add('comment-entry');
-    commentEntry.innerHTML = `<strong>${name}:</strong><p>${comment}</p>`;
-    commentsDisplay.appendChild(commentEntry);
+  if (name && commentText) {
+    // Add new comment
+    comments.push({ name, commentText });
+
+    // Enforce maximum of 100 comments
+    if (comments.length > 100) {
+      comments.shift(); // Remove the oldest comment
+    }
+
+    // Clear and re-render comments display
+    commentsDisplay.innerHTML = '';
+    comments.forEach(commentEntryData => {
+      const commentEntryElement = document.createElement('div');
+      commentEntryElement.classList.add('comment-entry');
+      commentEntryElement.innerHTML = `<strong>${commentEntryData.name}:</strong><p>${commentEntryData.commentText}</p>`;
+      commentsDisplay.appendChild(commentEntryElement);
+    });
 
     // Clear input fields
     commentNameInput.value = '';
