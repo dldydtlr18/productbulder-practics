@@ -1,35 +1,35 @@
-# **AI Development Guidelines for Modern Web Projects in Firebase Studio**
+# **Firebase Studio의 최신 웹 프로젝트를 위한 AI 개발 지침**
 
-These guidelines define the operational principles and capabilities of an AI agent (e.g., Gemini) interacting with framework-less web projects (HTML, CSS, JavaScript) within the Firebase Studio environment. The goal is to enable an efficient, automated, and error-resilient application design and development workflow that leverages modern, widely supported web standards (Baseline).
+이 지침은 Firebase Studio 환경 내에서 프레임워크 없는 웹 프로젝트(HTML, CSS, JavaScript)와 상호 작용하는 AI 에이전트(예: Gemini)의 작동 원리 및 기능을 정의합니다. 목표는 널리 지원되는 최신 웹 표준(베이스라인)을 활용하여 효율적이고 자동화되었으며 오류에 강한 애플리케이션 설계 및 개발 워크플로우를 구현하는 것입니다.
 
-## **Environment & Context Awareness**
+## **환경 및 컨텍스트 인식**
 
-The AI operates within the Firebase Studio development environment, which provides a Code OSS-based IDE and a simple, pre-configured environment for web development.
+AI는 Code OSS 기반 IDE와 간단하게 사전 구성된 웹 개발 환경을 제공하는 Firebase Studio 개발 환경 내에서 작동합니다.
 
-* **Project Structure:** The AI assumes a basic web project structure. The primary entry point is `index.html`. CSS and JavaScript are expected to be in files like `style.css` and `main.js`, linked from the HTML.
-* **`dev.nix` Configuration:** The AI is aware of the `.idx/dev.nix` file for environment configuration, which may include tools like `pkgs.nodejs` for development servers or build tools.
-* **Preview Server:** Firebase Studio provides a running preview server. The AI will monitor the server's output (e.g., console logs, network requests) for real-time feedback on changes.
-* **Firebase Integration:** The AI recognizes standard Firebase integration patterns, such as including the Firebase SDKs from the CDN and initializing the app with a configuration object.
+* **프로젝트 구조:** AI는 기본적인 웹 프로젝트 구조를 가정합니다. 기본 진입점은 `index.html`입니다. CSS와 JavaScript는 HTML에서 연결된 `style.css` 및 `main.js`와 같은 파일에 있을 것으로 예상됩니다.
+* **`dev.nix` 구성:** AI는 개발 서버 또는 빌드 도구를 위한 `pkgs.nodejs`와 같은 도구를 포함할 수 있는 환경 구성을 위한 `.idx/dev.nix` 파일을 인식합니다.
+* **미리보기 서버:** Firebase Studio는 실행 중인 미리보기 서버를 제공합니다. AI는 변경 사항에 대한 실시간 피드백을 위해 서버의 출력(예: 콘솔 로그, 네트워크 요청)을 모니터링합니다.
+* **Firebase 통합:** AI는 CDN에서 Firebase SDK를 포함하고 구성 개체로 앱을 초기화하는 것과 같은 표준 Firebase 통합 패턴을 인식합니다.
 
-## **Code Modification & Dependency Management**
+## **코드 수정 및 종속성 관리**
 
-The AI is empowered to modify the codebase autonomously based on user requests.  The AI is creative and anticipates features that the user might need even if not explicitly requested.
+AI는 사용자 요청에 따라 코드베이스를 자율적으로 수정할 수 있는 권한을 부여받습니다. AI는 창의적이며 사용자가 명시적으로 요청하지 않은 경우에도 필요할 수 있는 기능을 예측합니다.
 
-* **Core Code Assumption:** The AI will primarily modify `.html`, `.css`, and `.js` files. It will create new files as needed and ensure they are correctly linked in `index.html`.
-* **Dependency Management:** For a framework-less project, the AI will prefer to use ES Modules for JavaScript, importing/exporting functionality between files. For third-party libraries, it will use CDN links with Subresource Integrity (SRI) hashes for security, or install them via npm if a `package.json` is present.
+* **핵심 코드 가정:** AI는 주로 `.html`, `.css` 및 `.js` 파일을 수정합니다. 필요에 따라 새 파일을 만들고 `index.html`에 올바르게 연결되었는지 확인합니다.
+* **종속성 관리:** 프레임워크 없는 프로젝트의 경우 AI는 JavaScript에 ES 모듈을 사용하여 파일 간에 기능을 가져오고 내보내는 것을 선호합니다. 타사 라이브러리의 경우 보안을 위해 SRI(Subresource Integrity) 해시가 있는 CDN 링크를 사용하거나 `package.json`이 있는 경우 npm을 통해 설치합니다.
 
-## **Modern HTML: Web Components**
+## **최신 HTML: 웹 구성 요소**
 
-The AI will use Web Components to create encapsulated, reusable UI elements without external frameworks.
+AI는 웹 구성 요소를 사용하여 외부 프레임워크 없이 캡슐화되고 재사용 가능한 UI 요소를 만듭니다.
 
-* **Custom Elements:** Define new HTML tags with custom behavior using JavaScript classes.
-* **Shadow DOM:** Encapsulate a component's HTML structure, styling, and behavior, preventing conflicts with the main document.
-* **HTML Templates (`<template>` and `<slot>`):** Create inert chunks of markup to be cloned and used in custom elements, with slots for flexible content injection.
+* **사용자 지정 요소:** JavaScript 클래스를 사용하여 사용자 지정 동작으로 새 HTML 태그를 정의합니다.
+* **섀도 DOM:** 구성 요소의 HTML 구조, 스타일 및 동작을 캡슐화하여 기본 문서와의 충돌을 방지합니다.
+* **HTML 템플릿 (`<template>` 및 `<slot>`):** 사용자 지정 요소에서 복제하여 사용할 비활성 마크업 청크를 만들고 유연한 콘텐츠 삽입을 위한 슬롯을 사용합니다.
 
-*Example of a simple Web Component:*
+*간단한 웹 구성 요소의 예:*
 
 ```javascript
-// in main.js
+// main.js에서
 class SimpleGreeting extends HTMLElement {
   constructor() {
     super();
@@ -37,7 +37,7 @@ class SimpleGreeting extends HTMLElement {
     const wrapper = document.createElement('span');
     wrapper.setAttribute('class', 'wrapper');
     const text = document.createElement('p');
-    text.textContent = `Hello, ${this.getAttribute('name') || 'World'}!`;
+    text.textContent = `안녕하세요, ${this.getAttribute('name') || 'World'}!`;
     const style = document.createElement('style');
     style.textContent = `
       .wrapper {
@@ -53,106 +53,106 @@ class SimpleGreeting extends HTMLElement {
 }
 customElements.define('simple-greeting', SimpleGreeting);
 
-// in index.html
+// index.html에서
 // <simple-greeting name="User"></simple-greeting>
 ```
 
-## **Modern CSS (Baseline Features)**
+## **최신 CSS (베이스라인 기능)**
 
-The AI will use modern, widely supported CSS features to create responsive and maintainable styles.
+AI는 반응형 및 유지 관리 가능한 스타일을 만들기 위해 널리 지원되는 최신 CSS 기능을 사용합니다.
 
-* **Container Queries (`@container`):** Create components that respond to the size of their parent container, not just the viewport.
-* **Cascade Layers (`@layer`):** Manage the CSS cascade with explicit layers to prevent style conflicts, especially when integrating third-party styles.
-* **The `:has()` Selector:** Select parent elements based on their children, simplifying complex styling scenarios without JavaScript.
-* **Logical Properties:** Use properties like `margin-inline-start` instead of `margin-left` for better support in different writing modes.
-* **Modern Color Spaces (`oklch`, `lch`):** Use color functions that provide access to more vibrant and perceptually uniform colors.
-* **CSS Variables:** Use custom properties (`--main-color: #333;`) for theming and easier maintenance.
+* **컨테이너 쿼리 (`@container`):** 뷰포트뿐만 아니라 상위 컨테이너의 크기에 반응하는 구성 요소를 만듭니다.
+* **계단식 레이어 (`@layer`):** 특히 타사 스타일을 통합할 때 스타일 충돌을 방지하기 위해 명시적 레이어로 CSS 계단식을 관리합니다.
+* **`:has()` 선택기:** 자식을 기반으로 부모 요소를 선택하여 JavaScript 없이 복잡한 스타일링 시나리오를 단순화합니다.
+* **논리적 속성:** 다른 쓰기 모드에서 더 나은 지원을 위해 `margin-left` 대신 `margin-inline-start`와 같은 속성을 사용합니다.
+* **최신 색상 공간 (`oklch`, `lch`):** 더 생생하고 지각적으로 균일한 색상에 액세스할 수 있는 색상 함수를 사용합니다.
+* **CSS 변수:** 테마 및 쉬운 유지 관리를 위해 사용자 지정 속성(`--main-color: #333;`)을 사용합니다.
 
-## **Modern JavaScript (Baseline Features)**
+## **최신 JavaScript (베이스라인 기능)**
 
-The AI will write clean, efficient, and modern JavaScript.
+AI는 깨끗하고 효율적이며 최신 JavaScript를 작성합니다.
 
-* **ES Modules:** Use `import` and `export` to organize code into reusable modules.
-* **Async/Await:** Handle asynchronous operations (like `fetch`) with clean, readable syntax.
-* **The `fetch` API:** Make network requests to APIs.
-* **Promises:** Work with asynchronous results in a structured way.
-* **Modern Syntax:** Utilize arrow functions, destructuring, spread/rest operators, and optional chaining (`?.`).
+* **ES 모듈:** `import` 및 `export`를 사용하여 코드를 재사용 가능한 모듈로 구성합니다.
+* **Async/Await:** 깨끗하고 읽기 쉬운 구문으로 비동기 작업(예: `fetch`)을 처리합니다.
+* **`fetch` API:** API에 네트워크 요청을 보냅니다.
+* **프로미스:** 구조화된 방식으로 비동기 결과로 작업합니다.
+* **최신 구문:** 화살표 함수, 구조 분해, 확산/나머지 연산자 및 선택적 체인(`?.`)을 활용합니다.
 
-## **Advanced Capabilities**
+## **고급 기능**
 
-### **3D Graphics with Three.js**
+### **Three.js를 사용한 3D 그래픽**
 
-When 3D graphics are requested, the AI will use the **Three.js** library.
+3D 그래픽이 요청되면 AI는 **Three.js** 라이브러리를 사용합니다.
 
-* **Setup:** The AI will add Three.js to the project, typically via a CDN or by installing the `three` package from npm.
-* **Core Concepts:** The AI will create a `Scene`, a `Camera`, and a `WebGLRenderer`. It will add `Meshes` (geometry \+ material) to the scene and render the result.
-* **Performance:** For complex scenes, the AI will employ optimization techniques like reducing draw calls, using Level of Detail (LOD), and optimizing 3D assets.
-* **Shaders:** For custom visual effects, the AI can write and implement GLSL shaders using `ShaderMaterial`.
+* **설정:** AI는 일반적으로 CDN을 통해 또는 npm에서 `three` 패키지를 설치하여 프로젝트에 Three.js를 추가합니다.
+* **핵심 개념:** AI는 `Scene`, `Camera` 및 `WebGLRenderer`를 만듭니다. 장면에 `Meshes`(지오메트리 + 재질)를 추가하고 결과를 렌더링합니다.
+* **성능:** 복잡한 장면의 경우 AI는 그리기 호출 감소, 세부 수준(LOD) 사용 및 3D 자산 최적화와 같은 최적화 기술을 사용합니다.
+* **셰이더:** 사용자 지정 시각 효과를 위해 AI는 `ShaderMaterial`을 사용하여 GLSL 셰이더를 작성하고 구현할 수 있습니다.
 
-### **High-Performance with WebAssembly (WASM)**
+### **WebAssembly(WASM)를 사용한 고성능**
 
-For computationally intensive tasks, the AI can integrate WebAssembly modules.
+계산 집약적인 작업의 경우 AI는 WebAssembly 모듈을 통합할 수 있습니다.
 
-* **Use Cases:** Ideal for tasks like in-browser image/video processing, scientific simulations, or games.
-* **Integration:** The AI will load and instantiate the `.wasm` file using the `WebAssembly` JavaScript API and call its exported functions. It will manage the data transfer between JavaScript and WASM efficiently.
+* **사용 사례:** 브라우저 내 이미지/비디오 처리, 과학 시뮬레이션 또는 게임과 같은 작업에 이상적입니다.
+* **통합:** AI는 `WebAssembly` JavaScript API를 사용하여 `.wasm` 파일을 로드하고 인스턴스화하고 내보낸 함수를 호출합니다. JavaScript와 WASM 간의 데이터 전송을 효율적으로 관리합니다.
 
-## **Automated Error Detection & Remediation**
+## **자동 오류 감지 및 수정**
 
-A critical function of the AI is to continuously monitor for and automatically resolve errors to maintain a runnable and correct application state.
+AI의 중요한 기능은 실행 가능하고 올바른 애플리케이션 상태를 유지하기 위해 오류를 지속적으로 모니터링하고 자동으로 해결하는 것입니다.
 
-* **Post-Modification Checks:** After every code modification, the AI will:
-  1. Monitor the IDE's diagnostics (problem pane) for errors.
-  2. Check the browser preview's developer console for runtime errors, 404s, and rendering issues.
-* **Automatic Error Correction:** The AI will attempt to automatically fix detected errors. This includes, but is not limited to:
-  * Syntax errors in HTML, CSS, or JavaScript.
-  * Incorrect file paths in `<script>`, `<link>`, or `<img>` tags.
-  * Common JavaScript runtime errors.
-* **Problem Reporting:** If an error cannot be automatically resolved, the AI will clearly report the specific error message, its location, and a concise explanation with a suggested manual intervention or alternative approach to the user.
+* **수정 후 확인:** 모든 코드 수정 후 AI는 다음을 수행합니다.
+  1. 오류에 대한 IDE의 진단(문제 창)을 모니터링합니다.
+  2. 런타임 오류, 404 및 렌더링 문제에 대한 브라우저 미리보기의 개발자 콘솔을 확인합니다.
+* **자동 오류 수정:** AI는 감지된 오류를 자동으로 수정하려고 시도합니다. 여기에는 다음이 포함되지만 이에 국한되지는 않습니다.
+  * HTML, CSS 또는 JavaScript의 구문 오류.
+  * `<script>`, `<link>` 또는 `<img>` 태그의 잘못된 파일 경로.
+  * 일반적인 JavaScript 런타임 오류.
+* **문제 보고:** 오류를 자동으로 해결할 수 없는 경우 AI는 특정 오류 메시지, 위치 및 사용자에게 제안된 수동 개입 또는 대체 접근 방식에 대한 간결한 설명을 명확하게 보고합니다.
 
-## **Visual Design**
+## **시각적 디자인**
 
-**Aesthetics:** The AI always makes a great first impression by creating a unique user experience that incorporates modern components, a visually balanced layout with clean spacing, and polished styles that are easy to understand.
+**미학:** AI는 항상 현대적인 구성 요소, 깨끗한 간격의 시각적으로 균형 잡힌 레이아웃, 이해하기 쉬운 세련된 스타일을 통합하여 독특한 사용자 경험을 만들어 훌륭한 첫인상을 남깁니다.
 
-1. Build beautiful and intuitive user interfaces that follow modern design guidelines.
-2. Ensure your app is mobile responsive and adapts to different screen sizes, working perfectly on mobile and web.
-3. Propose colors, fonts, typography, iconography, animation, effects, layouts, texture, drop shadows, gradients, etc.
-4. If images are needed, make them relevant and meaningful, with appropriate size, layout, and licensing (e.g., freely available). If real images are not available, provide placeholder images.
-5. If there are multiple pages for the user to interact with, provide an intuitive and easy navigation bar or controls.
+1. 최신 디자인 지침을 따르는 아름답고 직관적인 사용자 인터페이스를 구축합니다.
+2. 앱이 모바일 반응형이고 다양한 화면 크기에 적응하여 모바일과 웹에서 완벽하게 작동하는지 확인합니다.
+3. 색상, 글꼴, 타이포그래피, 아이코노그래피, 애니메이션, 효과, 레이아웃, 질감, 그림자, 그라디언트 등을 제안합니다.
+4. 이미지가 필요한 경우 적절한 크기, 레이아웃 및 라이선스(예: 무료 사용 가능)를 사용하여 관련성 있고 의미 있게 만듭니다. 실제 이미지를 사용할 수 없는 경우 자리 표시자 이미지를 제공합니다.
+5. 사용자가 상호 작용할 여러 페이지가 있는 경우 직관적이고 쉬운 탐색 모음 또는 컨트롤을 제공합니다.
 
-**Bold Definition:** The AI uses modern, interactive iconography, images, and UI components like buttons, text fields, animation, effects, gestures, sliders, carousels, navigation, etc.
+**굵은 정의:** AI는 버튼, 텍스트 필드, 애니메이션, 효과, 제스처, 슬라이더, 캐러셀, 탐색 등과 같은 현대적이고 상호 작용적인 아이코노그래피, 이미지 및 UI 구성 요소를 사용합니다.
 
-1. Fonts \- Choose expressive and relevant typography. Stress and emphasize font sizes to ease understanding, e.g., hero text, section headlines, list headlines, keywords in paragraphs, etc.
-2. Color \- Include a wide range of color concentrations and hues in the palette to create a vibrant and energetic look and feel.
-3. Texture \- Apply subtle noise texture to the main background to add a premium, tactile feel.
-4. Visual effects \- Multi-layered drop shadows create a strong sense of depth. Cards have a soft, deep shadow to look "lifted."
-5. Iconography \- Incorporate icons to enhance the user’s understanding and the logical navigation of the app.
-6. Interactivity \- Buttons, checkboxes, sliders, lists, charts, graphs, and other interactive elements have a shadow with elegant use of color to create a "glow" effect.
+1. 글꼴 - 표현력이 풍부하고 관련성 있는 타이포그래피를 선택합니다. 영웅 텍스트, 섹션 헤드라인, 목록 헤드라인, 단락의 키워드 등 이해를 돕기 위해 글꼴 크기를 강조하고 강조합니다.
+2. 색상 - 생생하고 활기찬 모양과 느낌을 만들기 위해 팔레트에 다양한 색상 농도와 색조를 포함합니다.
+3. 질감 - 프리미엄하고 촉각적인 느낌을 더하기 위해 주 배경에 미묘한 노이즈 질감을 적용합니다.
+4. 시각 효과 - 다층 그림자는 강한 깊이감을 만듭니다. 카드는 "들어 올려진" 것처럼 보이도록 부드럽고 깊은 그림자를 가집니다.
+5. 아이코노그래피 - 사용자의 이해와 앱의 논리적 탐색을 향상시키기 위해 아이콘을 통합합니다.
+6. 상호 작용성 - 버튼, 확인란, 슬라이더, 목록, 차트, 그래프 및 기타 상호 작용 요소에는 "빛나는" 효과를 내기 위해 색상을 우아하게 사용하는 그림자가 있습니다.
 
-## **Accessibility or A11Y Standards:** The AI implements accessibility features to empower all users, assuming a wide variety of users with different physical abilities, mental abilities, age groups, education levels, and learning styles.
+## **접근성 또는 A11Y 표준:** AI는 신체적 능력, 정신적 능력, 연령대, 교육 수준 및 학습 스타일이 다른 다양한 사용자를 가정하여 모든 사용자에게 권한을 부여하는 접근성 기능을 구현합니다.
 
-## **Iterative Development & User Interaction**
+## **반복 개발 및 사용자 상호 작용**
 
-The AI's workflow is iterative, transparent, and responsive to user input.
+AI의 워크플로우는 반복적이고 투명하며 사용자 입력에 응답합니다.
 
-* **Plan Generation & Blueprint Management:** Each time the user requests a change, the AI will first generate a clear plan overview and a list of actionable steps. This plan will then be used to **create or update a blueprint.md file** in the project's root directory.
-  * The `blueprint.md` file will serve as a single source of truth, containing:
-    * A section with a concise overview of the purpose and capabilities.
-    * A section with a detailed outline documenting the project, including *all style, design, and features* implemented in the application from the initial version to the current version.
-    * A section with a detailed section outlining the plan and steps for the *current* requested change.
+* **계획 생성 및 청사진 관리:** 사용자가 변경을 요청할 때마다 AI는 먼저 명확한 계획 개요와 실행 가능한 단계 목록을 생성합니다. 그런 다음 이 계획을 사용하여 프로젝트의 루트 디렉토리에 **blueprint.md 파일을 만들거나 업데이트**합니다.
+  * `blueprint.md` 파일은 다음을 포함하는 단일 정보 소스 역할을 합니다.
+    * 목적과 기능에 대한 간결한 개요가 있는 섹션.
+    * 초기 버전에서 현재 버전까지 애플리케이션에 구현된 *모든 스타일, 디자인 및 기능*을 포함하여 프로젝트를 문서화하는 자세한 개요가 있는 섹션.
+    * *현재* 요청된 변경에 대한 계획과 단계를 설명하는 자세한 섹션이 있는 섹션.
     *
-  * Before initiating any new change, the AI will reference the `blueprint.md` to ensure full context and understanding of the application's current state.
-* **Prompt Understanding:** The AI will interpret user prompts to understand the desired changes. It will ask clarifying questions if the prompt is ambiguous.
-* **Contextual Responses:** The AI will provide conversational responses, explaining its actions, progress, and any issues encountered. It will summarize changes made.
-* **Error Checking Flow:**
-  1. **Code Change:** AI applies a code modification.
-  2. **Dependency Check:** If a `package.json` was modified, AI runs `npm install`.
-  3. **Preview Check:** AI observes the browser preview and developer console for visual and runtime errors.
-  4. **Remediation/Report:** If errors are found, AI attempts automatic fixes. If unsuccessful, it reports details to the user.
+  * 새 변경을 시작하기 전에 AI는 `blueprint.md`를 참조하여 애플리케이션의 현재 상태를 완전히 이해하고 있는지 확인합니다.
+* **프롬프트 이해:** AI는 사용자 프롬프트를 해석하여 원하는 변경 사항을 이해합니다. 프롬프트가 모호한 경우 명확한 질문을 합니다.
+* **문맥에 맞는 응답:** AI는 자신의 행동, 진행 상황 및 발생한 모든 문제를 설명하는 대화식 응답을 제공합니다. 변경 사항을 요약합니다.
+* **오류 확인 흐름:**
+  1. **코드 변경:** AI가 코드 수정을 적용합니다.
+  2. **종속성 확인:** `package.json`이 수정된 경우 AI가 `npm install`을 실행합니다.
+  3. **미리보기 확인:** AI는 시각적 및 런타임 오류에 대한 브라우저 미리보기 및 개발자 콘솔을 관찰합니다.
+  4. **수정/보고:** 오류가 발견되면 AI가 자동 수정을 시도합니다. 실패하면 사용자에게 세부 정보를 보고합니다.
 
 
 # Firebase MCP
 
-When requested for Firebase add the following the server configurations to .idx/mcp.json. Just add the following and don't add anything else.
+Firebase에 대해 요청 시 .idx/mcp.json에 서버 구성을 추가하십시오. 다음을 추가하고 다른 것은 추가하지 마십시오.
 
 {
     "mcpServers": {
