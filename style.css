@@ -14,7 +14,7 @@ header, footer {
 }
 
 main {
-  max-width: 800px;
+  max-width: 900px; /* Adjusted for wider layout */
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
@@ -22,37 +22,39 @@ main {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-section {
-  margin-bottom: 20px;
-}
-
-#lotto-container {
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: #fafafa;
+#app-container {
+  display: flex;
+  gap: 20px;
 }
 
 #lotto-grid-container {
-  margin: 20px auto;
-  padding: 20px;
+  flex: 1; /* Take up available space */
+  padding: 15px; /* Adjusted padding */
   border: 1px solid #ccc;
   border-radius: 8px;
-  max-width: 450px;
+}
+
+#lotto-container {
+  flex: 1; /* Take up available space */
+  border: 1px solid #ccc;
+  padding: 15px; /* Adjusted padding */
+  border-radius: 8px;
+  background-color: #fafafa;
 }
 
 #lotto-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
+  gap: 5px; /* Reduced gap */
 }
 
 .grid-number {
-  padding: 10px;
+  padding: 5px; /* Reduced padding */
   border: 1px solid #ccc;
   border-radius: 4px;
   text-align: center;
   cursor: pointer;
+  font-size: 14px; /* Reduced font size */
 }
 
 .grid-number.selected {
@@ -64,19 +66,19 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
-  padding-top: 20px;
+  margin-top: 15px; /* Adjusted margin */
+  padding-top: 15px; /* Adjusted padding */
   border-top: 1px solid #ccc;
 }
 
 #generation-controls span {
-  font-size: 16px;
+  font-size: 14px; /* Adjusted font size */
   font-weight: bold;
 }
 
 #lotto-btn {
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 8px 16px; /* Adjusted padding */
+  font-size: 14px; /* Adjusted font size */
   cursor: pointer;
   background-color: #dc3545;
   color: white;
@@ -89,25 +91,23 @@ section {
 }
 
 #lotto-numbers {
-  font-size: 18px; /* Adjusted font size */
+  font-size: 16px; /* Adjusted font size */
   font-weight: bold;
   padding: 5px;
   margin: 0 auto;
-  border: 1px solid #eee;
-  border-radius: 4px;
-  min-width: 200px; /* Kept min-width */
+  min-width: initial; /* Removed min-width */
 }
 
 .lotto-row {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  justify-content: center; /* Center the numbers in the row */
+  margin-bottom: 8px; /* Adjusted margin */
+  justify-content: center;
 }
 
 .lotto-label {
-  margin-right: 15px;
-  font-size: 20px;
+  margin-right: 10px; /* Adjusted margin */
+  font-size: 18px; /* Adjusted font size */
   font-weight: bold;
 }
 
@@ -115,12 +115,12 @@ section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 30px; /* Reduced size */
+  height: 30px; /* Reduced size */
   border-radius: 50%;
   border: 2px solid #007bff;
-  margin-right: 10px;
-  font-size: 18px;
+  margin-right: 5px; /* Adjusted margin */
+  font-size: 14px; /* Reduced font size */
   color: #007bff;
 }
 
