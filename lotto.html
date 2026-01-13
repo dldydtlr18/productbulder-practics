@@ -291,7 +291,7 @@ kakao.maps.load(function() {
                 top10Stores.forEach((place, index) => {
                     place.distance = getDistance(finalMapCenter.getLat(), finalMapCenter.getLng(), parseFloat(place.y), parseFloat(place.x));
                     const li = document.createElement('li');
-                    li.textContent = `${index + 1}. ${place.place_name} (${(place.distance / 1000).toFixed(2)} km)`;
+                    li.textContent = `${place.place_name} (${(place.distance / 1000).toFixed(2)} km)`;
                     ol.appendChild(li);
                 });
                 storeListContainer.appendChild(ol);
