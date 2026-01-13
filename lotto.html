@@ -277,17 +277,25 @@ kakao.maps.load(function() {
 
                 const ol = document.createElement('ol');
                 top10Stores.forEach((place, index) => {
-                    const li = document.createElement('li');
-                    li.textContent = `${index + 1}위: ${place.place_name} (${(place.distance / 1000).toFixed(2)} km)`;
-                    ol.appendChild(li);
-
                     // Display marker for each of the top 10 stores
                     const marker = displayMarker(place);
                     currentMarkers.push(marker); // Add marker to the list
                     bounds.extend(new kakao.maps.LatLng(place.y, place.x));
                 });
-                storeListContainer.appendChild(ol);
                 map.setBounds(bounds); // Adjust map bounds to fit the top 10
+
+                // NOW, get the final map center AFTER setBounds
+                const finalMapCenter = map.getCenter();
+
+                // Recalculate distances and populate the list
+                top10Stores.forEach((place, index) => {
+                    place.distance = getDistance(finalMapCenter.getLat(), finalMapCenter.getLng(), parseFloat(place.y), parseFloat(place.x));
+                    const li = document.createElement('li');
+                    li.textContent = `${index + 1}위: ${place.place_name} (${(place.distance / 1000).toFixed(2)} km)`;
+                    ol.appendChild(li);
+                });
+                storeListContainer.appendChild(ol);
+
             } else {
                 storeListContainer.innerHTML = '<p class="no-results">검색 결과가 존재하지 않습니다.</p>';
                 map.setCenter(mapCenter); // Re-center map if no results
