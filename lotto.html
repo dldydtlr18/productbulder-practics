@@ -116,6 +116,55 @@
                 margin: 0 auto;
             }
         }
+
+        #store-list-container {
+            max-width: 800px; /* Optional: Constrain width for better readability */
+            margin: 20px auto; /* Center the container and add some space */
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        #store-list-container h2 {
+            text-align: center;
+            color: var(--dark-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        #store-list-container ol {
+            list-style-type: decimal; /* Use decimal numbering for ranks */
+            padding-left: 20px; /* Add padding for numbers */
+            margin: 0;
+        }
+
+        #store-list-container li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        #store-list-container li:last-child {
+            border-bottom: none; /* No border for the last item */
+        }
+
+        #store-list-container .no-results {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+        }
+
+        @media (max-width: 600px) {
+            #store-list-container {
+                margin: 10px;
+                padding: 10px;
+            }
+            #store-list-container li {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -131,6 +180,7 @@
 </div>
 
 <div id="map"></div>
+<div id="store-list-container"></div>
 
 <footer>
     과도한 몰입은 금물, 로또는 소액으로 즐거운 상상을 위해 구매하세요.
@@ -138,6 +188,9 @@
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d41f0e241cc682fab66fcc67acd12e90&libraries=services&autoload=false"></script>
 <script>
+// 전역 변수로 마커 배열 선언
+var currentMarkers = [];
+
 // kakao.maps.load를 사용하여 SDK 로드가 완료된 후 지도 초기화
 kakao.maps.load(function() {
     var mapContainer = document.getElementById('map'), 
@@ -168,22 +221,66 @@ kakao.maps.load(function() {
         console.log("Search Data:", data);
         console.log("Search Pagination:", pagination);
 
+        // Clear previous store list and markers
+        const storeListContainer = document.getElementById('store-list-container');
+        storeListContainer.innerHTML = ''; 
+        
+        // Remove existing markers from the map before adding new ones
+        if (typeof currentMarkers !== 'undefined') {
+            for (let i = 0; i < currentMarkers.length; i++) {
+                currentMarkers[i].setMap(null);
+            }
+        }
+        currentMarkers = []; // Reset marker array
+
+
         if (status === kakao.maps.services.Status.OK) {
             var bounds = new kakao.maps.LatLngBounds();
 
-            for (var i=0; i<data.length; i++) {
-                displayMarker(data[i]);    
-                bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-            }       
+            // Calculate distance to map center and sort
+            const mapCenter = map.getCenter();
+            data.forEach(place => {
+                const placeLatLng = new kakao.maps.LatLng(place.y, place.x);
+                place.distance = mapCenter.getDistanceFrom(placeLatLng);
+            });
 
-            map.setBounds(bounds);
+            data.sort((a, b) => a.distance - b.distance);
+
+            // Display top 10 stores
+            const top10Stores = data.slice(0, 10);
+
+            if (top10Stores.length > 0) {
+                const title = document.createElement('h2');
+                title.textContent = '가까운 로또 명당 TOP 10';
+                storeListContainer.appendChild(title);
+
+                const ol = document.createElement('ol');
+                top10Stores.forEach((place, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = `${index + 1}위: ${place.place_name} (${(place.distance / 1000).toFixed(2)} km)`;
+                    ol.appendChild(li);
+
+                    // Display marker for each of the top 10 stores
+                    const marker = displayMarker(place);
+                    currentMarkers.push(marker); // Add marker to the list
+                    bounds.extend(new kakao.maps.LatLng(place.y, place.x));
+                });
+                storeListContainer.appendChild(ol);
+                map.setBounds(bounds); // Adjust map bounds to fit the top 10
+            } else {
+                storeListContainer.innerHTML = '<p class="no-results">검색 결과가 존재하지 않습니다.</p>';
+            }
+
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+            storeListContainer.innerHTML = '<p class="no-results">검색 결과가 존재하지 않습니다.</p>';
             alert('검색 결과가 존재하지 않습니다.');
             return;
         } else if (status === kakao.maps.services.Status.ERROR) {
+            storeListContainer.innerHTML = '<p class="no-results">검색 중 오류가 발생했습니다.</p>';
             alert('검색 중 오류가 발생했습니다.');
             return;
         } else {
+            storeListContainer.innerHTML = '<p class="no-results">알 수 없는 오류가 발생했습니다.</p>';
             alert('알 수 없는 오류가 발생했습니다. (상태 코드: ' + status + ')');
         }
     }
