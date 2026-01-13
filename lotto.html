@@ -242,9 +242,15 @@ kakao.maps.load(function() {
         storeListContainer.innerHTML = ''; 
         
         // Remove existing markers from the map before adding new ones
-        if (typeof currentMarkers !== 'undefined') {
+        if (typeof currentMarkers !== 'undefined' && currentMarkers.length > 0) {
+            console.log("Clearing markers. currentMarkers array:", currentMarkers);
             for (let i = 0; i < currentMarkers.length; i++) {
-                currentMarkers[i].setMap(null);
+                console.log(`Clearing marker at index ${i}:`, currentMarkers[i]);
+                if (currentMarkers[i] && typeof currentMarkers[i].setMap === 'function') {
+                    currentMarkers[i].setMap(null);
+                } else {
+                    console.warn(`Marker at index ${i} is not a valid marker object.`, currentMarkers[i]);
+                }
             }
         }
         currentMarkers = []; // Reset marker array
