@@ -193,6 +193,22 @@ var currentMarkers = [];
 
 // kakao.maps.load를 사용하여 SDK 로드가 완료된 후 지도 초기화
 kakao.maps.load(function() {
+    // Custom distance calculation function (Haversine formula)
+    function getDistance(lat1, lon1, lat2, lon2) {
+        const R = 6371e3; // metres
+        const φ1 = lat1 * Math.PI/180; // φ, λ in radians
+        const φ2 = lat2 * Math.PI/180;
+        const Δφ = (lat2-lat1) * Math.PI/180;
+        const Δλ = (lon2-lon1) * Math.PI/180;
+
+        const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                  Math.cos(φ1) * Math.cos(φ2) *
+                  Math.sin(Δλ/2) * Math.sin(Δλ/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+        return R * c; // in metres
+    }
+
     var mapContainer = document.getElementById('map'), 
         mapOption = { 
             center: new kakao.maps.LatLng(37.566826, 126.9786567), // 기본 서울 시청
@@ -240,8 +256,7 @@ kakao.maps.load(function() {
             // Calculate distance to map center and sort
             const mapCenter = map.getCenter();
             data.forEach(place => {
-                const placeLatLng = new kakao.maps.LatLng(place.y, place.x);
-                place.distance = mapCenter.getDistanceFrom(placeLatLng);
+                place.distance = getDistance(mapCenter.getLat(), mapCenter.getLng(), parseFloat(place.y), parseFloat(place.x));
             });
 
             data.sort((a, b) => a.distance - b.distance);
