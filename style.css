@@ -6,11 +6,10 @@ body {
   color: #333;
 }
 
-header, footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 1rem 0;
+header h1 {
+  font-size: 1.5rem;
+  color: #ffc107; /* Corresponds to var(--primary-color) in lotto.html */
+  margin: 0;
 }
 
 main {
