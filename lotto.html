@@ -84,6 +84,35 @@
             color: #666;
             z-index: 100;
         }
+
+        @media (max-width: 600px) {
+            header {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.2rem;
+                color: var(--primary-color); /* 색상 재지정 */
+            }
+
+            .search-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            input[type="text"] {
+                width: auto; /* Let it stretch */
+                max-width: none;
+            }
+
+            #map {
+                height: 60vh; 
+                min-height: 250px;
+            }
+        }
     </style>
 </head>
 <body>
