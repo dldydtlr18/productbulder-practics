@@ -284,19 +284,23 @@ kakao.maps.load(function() {
                 map.setBounds(bounds); // Adjust map bounds to fit the top 10
             } else {
                 storeListContainer.innerHTML = '<p class="no-results">검색 결과가 존재하지 않습니다.</p>';
+                map.setCenter(mapCenter); // Re-center map if no results
             }
 
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
             storeListContainer.innerHTML = '<p class="no-results">검색 결과가 존재하지 않습니다.</p>';
-            alert('검색 결과가 존재하지 않습니다.');
+            map.setCenter(mapCenter); // Re-center map if no results
+            alert('검색 결과가 존재하지 않습니다.'); // Keep alert for direct user feedback
             return;
         } else if (status === kakao.maps.services.Status.ERROR) {
             storeListContainer.innerHTML = '<p class="no-results">검색 중 오류가 발생했습니다.</p>';
-            alert('검색 중 오류가 발생했습니다.');
+            map.setCenter(mapCenter); // Re-center map if error
+            alert('검색 중 오류가 발생했습니다.'); // Keep alert for direct user feedback
             return;
         } else {
             storeListContainer.innerHTML = '<p class="no-results">알 수 없는 오류가 발생했습니다.</p>';
-            alert('알 수 없는 오류가 발생했습니다. (상태 코드: ' + status + ')');
+            map.setCenter(mapCenter); // Re-center map if unknown error
+            alert('알 수 없는 오류가 발생했습니다. (상태 코드: ' + status + ')'); // Keep alert for direct user feedback
         }
     }
 
