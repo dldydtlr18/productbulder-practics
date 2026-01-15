@@ -75,286 +75,286 @@ p {
     align-items: flex-start;
 }
 
-#lotto-grid-container {
-    flex: 2;
-    padding: 1.5rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background: #fafafa;
-}
-
-#lotto-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.grid-number {
-    aspect-ratio: 1 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    text-align: center;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.3s, color 0.3s, transform 0.2s;
-}
-
-.grid-number:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.grid-number.selected {
-    background-color: #ffc107;
-    border-color: #e0ac00;
-    color: #fff;
-    font-weight: 700;
-}
-
-#generation-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#lotto-btn, #reset-btn {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-#lotto-btn {
-    background-color: #dc3545;
-    color: white;
-}
-
-#lotto-btn:hover {
-    background-color: #c82333;
-    transform: translateY(-2px);
-}
-
-#reset-btn {
-    background-color: #6c757d;
-    color: white;
-}
-#reset-btn:hover {
-    background-color: #5a6268;
-    transform: translateY(-2px);
-}
-
-
-#lotto-container {
-    flex: 3;
-    padding: 1.5rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-}
-
-.lotto-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-    flex-wrap: wrap;
-}
-
-.lotto-label {
-    margin-right: 1.5rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #007bff;
-}
-
-.lotto-number-set {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.lotto-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-/* Map Section Styles */
-#map-section h2 {
-    margin-bottom: 1rem;
-}
-.search-container {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-#keyword {
-    padding: 0.8rem;
-    width: 60%;
-    max-width: 400px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-#map-search-btn {
-    padding: 0.8rem 1.5rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-}
-#map-search-btn:hover {
-     background-color: #0056b3;
-}
-
-
-#map {
-    width: 100%;
-    height: 500px;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-}
-
-#store-list-container {
-     padding: 1rem;
-     background-color: #f8f9fa;
-     border-radius: 8px;
-}
-#store-list-container h3 {
-     text-align: center;
-     margin-bottom: 1rem;
-}
-#store-list-container ol {
-     list-style-type: none;
-     padding-left: 0;
-}
-#store-list-container li {
-     padding: 0.8rem;
-     border-bottom: 1px solid #eee;
-}
-#store-list-container li:last-child {
-     border-bottom: none;
-}
-
-
-/* Footer Styles */
-footer {
-    background-color: #343a40;
-    color: #f8f9fa;
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: auto;
-}
-
-/* --- Responsive Design --- */
-
-/* Tablet */
-@media (max-width: 992px) {
-    #app-container {
-        flex-direction: column;
-    }
-    main {
+    #lotto-grid-container {
+        flex: 1;
         padding: 1.5rem;
-        margin: 1rem auto;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background: #fafafa;
     }
-}
-
-/* Large Mobile */
-@media (max-width: 768px) {
-    header {
+    
+    #lotto-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .grid-number {
+        aspect-ratio: 1 / 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        text-align: center;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    }
+    
+    .grid-number:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .grid-number.selected {
+        background-color: #ffc107;
+        border-color: #e0ac00;
+        color: #fff;
+        font-weight: 700;
+    }
+    
+    #generation-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    #lotto-btn, #reset-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+    
+    #lotto-btn {
+        background-color: #dc3545;
+        color: white;
+    }
+    
+    #lotto-btn:hover {
+        background-color: #c82333;
+        transform: translateY(-2px);
+    }
+    
+    #reset-btn {
+        background-color: #6c757d;
+        color: white;
+    }
+    #reset-btn:hover {
+        background-color: #5a6268;
+        transform: translateY(-2px);
+    }
+    
+    
+    #lotto-container {
+        flex: 1;
+        padding: 1.5rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+    }
+    
+    .lotto-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
         padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        flex-wrap: wrap;
     }
-    header h1 {
-        font-size: 1.8rem;
-    }
-    main {
-        padding: 1rem;
-    }
-    h2 {
+    
+    .lotto-label {
+        margin-right: 1.5rem;
         font-size: 1.5rem;
+        font-weight: 700;
+        color: #007bff;
     }
-    p {
-        font-size: 0.95rem;
+    
+    .lotto-number-set {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .lotto-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    /* Map Section Styles */
+    #map-section h2 {
+        margin-bottom: 1rem;
     }
     .search-container {
-        flex-direction: column;
-        align-items: stretch;
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
     }
+    
     #keyword {
-        width: auto;
-        max-width: none;
-    }
-    #lotto-grid-container, #lotto-container {
-        padding: 1rem;
-    }
-    .lotto-number {
-        width: 40px;
-        height: 40px;
+        padding: 0.8rem;
+        width: 60%;
+        max-width: 400px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
         font-size: 1rem;
     }
-}
-
-/* Small Mobile */
-@media (max-width: 576px) {
-    header h1 {
-        font-size: 1.5rem;
+    
+    #map-search-btn {
+        padding: 0.8rem 1.5rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.3s;
     }
-    h2 {
-        font-size: 1.3rem;
+    #map-search-btn:hover {
+         background-color: #0056b3;
     }
-    p {
-        font-size: 0.9rem;
-    }
-    #lotto-grid {
-        grid-template-columns: repeat(6, 1fr);
-        gap: 0.4rem;
-    }
-    .grid-number {
-        font-size: 0.8rem;
-        font-weight: 500;
-    }
-    #generation-controls {
-        flex-direction: column;
-        gap: 0.8rem;
-        align-items: stretch;
-    }
-    #lotto-btn, #reset-btn {
-        width: 100%;
-    }
-    .lotto-label {
-        margin-bottom: 0.5rem;
-        width: 100%;
-        text-align: center;
-    }
-    .lotto-number-set {
-        justify-content: center;
-    }
+    
+    
     #map {
-        height: 400px;
+        width: 100%;
+        height: 500px;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
     }
+    
+    #store-list-container {
+         padding: 1rem;
+         background-color: #f8f9fa;
+         border-radius: 8px;
+    }
+    #store-list-container h3 {
+         text-align: center;
+         margin-bottom: 1rem;
+    }
+    #store-list-container ol {
+         list-style-type: none;
+         padding-left: 0;
+    }
+    #store-list-container li {
+         padding: 0.8rem;
+         border-bottom: 1px solid #eee;
+    }
+    #store-list-container li:last-child {
+         border-bottom: none;
+    }
+    
+    
+    /* Footer Styles */
     footer {
-        padding: 1rem;
-        font-size: 0.8rem;
+        background-color: #343a40;
+        color: #f8f9fa;
+        text-align: center;
+        padding: 1.5rem;
+        margin-top: auto;
     }
-}
+    
+    /* --- Responsive Design --- */
+    
+    /* Tablet */
+    @media (max-width: 992px) {
+        main {
+            padding: 1.5rem;
+            margin: 1rem auto;
+        }
+    }
+    
+    /* Large Mobile */
+    @media (max-width: 768px) {
+        header {
+            padding: 1rem;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        main {
+            padding: 1rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+        }
+        p {
+            font-size: 0.95rem;
+        }
+        .search-container {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        #keyword {
+            width: auto;
+            max-width: none;
+        }
+        #lotto-grid-container, #lotto-container {
+            padding: 1rem;
+        }
+        .lotto-number {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+    }
+    
+    /* Small Mobile */
+    @media (max-width: 576px) {
+        #app-container {
+            flex-direction: column;
+        }
+        header h1 {
+            font-size: 1.5rem;
+        }
+        h2 {
+            font-size: 1.3rem;
+        }
+        p {
+            font-size: 0.9rem;
+        }
+        #lotto-grid {
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.4rem;
+        }
+        .grid-number {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        #generation-controls {
+            flex-direction: column;
+            gap: 0.8rem;
+            align-items: stretch;
+        }
+        #lotto-btn, #reset-btn {
+            width: 100%;
+        }
+        .lotto-label {
+            margin-bottom: 0.5rem;
+            width: 100%;
+            text-align: center;
+        }
+        .lotto-number-set {
+            justify-content: center;
+        }
+        #map {
+            height: 400px;
+        }
+        footer {
+            padding: 1rem;
+            font-size: 0.8rem;
+        }
+    }
