@@ -8,6 +8,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Header Styles */
@@ -89,7 +91,10 @@ p {
 }
 
 .grid-number {
-    padding: 0.75rem;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid #ccc;
     border-radius: 50%;
     text-align: center;
@@ -160,6 +165,7 @@ p {
     padding: 1rem;
     background: #f8f9fa;
     border-radius: 8px;
+    flex-wrap: wrap;
 }
 
 .lotto-label {
@@ -172,6 +178,7 @@ p {
 .lotto-number-set {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .lotto-number {
@@ -186,14 +193,6 @@ p {
     color: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
-
-/* Lotto ball colors */
-.lotto-number[data-value="1"] { background-color: #fbc400; }
-.lotto-number[data-value="2"] { background-color: #69c8f2; }
-.lotto-number[data-value="3"] { background-color: #ff7272; }
-.lotto-number[data-value="4"] { background-color: #aaaaaa; }
-.lotto-number[data-value="5"] { background-color: #b0d840; }
-/* Add more colors as needed or use a function in JS */
 
 /* Map Section Styles */
 #map-section h2 {
@@ -268,7 +267,9 @@ footer {
     margin-top: auto;
 }
 
-/* Responsive Design */
+/* --- Responsive Design --- */
+
+/* Tablet */
 @media (max-width: 992px) {
     #app-container {
         flex-direction: column;
@@ -279,15 +280,22 @@ footer {
     }
 }
 
+/* Large Mobile */
 @media (max-width: 768px) {
     header {
         padding: 1rem;
     }
     header h1 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+    }
+    main {
+        padding: 1rem;
     }
     h2 {
         font-size: 1.5rem;
+    }
+    p {
+        font-size: 0.95rem;
     }
     .search-container {
         flex-direction: column;
@@ -296,5 +304,57 @@ footer {
     #keyword {
         width: auto;
         max-width: none;
+    }
+    #lotto-grid-container, #lotto-container {
+        padding: 1rem;
+    }
+    .lotto-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 576px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+    h2 {
+        font-size: 1.3rem;
+    }
+    p {
+        font-size: 0.9rem;
+    }
+    #lotto-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0.4rem;
+    }
+    .grid-number {
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    #generation-controls {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: stretch;
+    }
+    #lotto-btn, #reset-btn {
+        width: 100%;
+    }
+    .lotto-label {
+        margin-bottom: 0.5rem;
+        width: 100%;
+        text-align: center;
+    }
+    .lotto-number-set {
+        justify-content: center;
+    }
+    #map {
+        height: 400px;
+    }
+    footer {
+        padding: 1rem;
+        font-size: 0.8rem;
     }
 }
