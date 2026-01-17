@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Kakao SDK 초기화 (본인의 JavaScript 키를 사용)
+    // 앱을 등록하여 REST API 키를 발급받아야 합니다.
+    if (!Kakao.isInitialized()) { // 이미 초기화되어 있는지 확인
+        Kakao.init('YOUR_KAKAO_JAVASCRIPT_KEY'); // 실제 JavaScript 키로 변경해야 합니다.
+    }
+
     // --- Lotto Generator Elements ---
     const lottoBtn = document.getElementById('lotto-btn');
     const resetBtn = document.getElementById('reset-btn');
@@ -11,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const keywordInput = document.getElementById('keyword');
     const mapContainer = document.getElementById('map');
     const storeList = document.getElementById('store-list');
+
+    // --- Share Buttons ---
+    const facebookShareBtn = document.getElementById('facebook-share-btn');
+    const twitterShareBtn = document.getElementById('twitter-share-btn');
+    const kakaoShareBtn = document.getElementById('kakao-share-btn');
+
 
     // --- Lotto Generator Logic ---
     const selectedNumbers = new Set();
@@ -77,6 +89,57 @@ document.addEventListener('DOMContentLoaded', () => {
         if (number <= 30) return '#ff7272'; // Red
         if (number <= 40) return '#aaaaaa'; // Gray
         return '#b0d840'; // Green
+    }
+
+
+    // --- Social Share Logic ---
+    const shareUrl = window.location.href; // 현재 페이지 URL
+    const shareTitle = document.title; // 현재 페이지 제목 (로또 번호 생성기 및 명당 찾기)
+    const shareDescription = document.querySelector('meta[name="description"]').content; // 현재 페이지 설명
+    // OG 이미지 URL (실제 사이트의 이미지 URL로 변경해야 합니다.)
+    const ogImageUrl = 'https://your-domain.com/og-image.png'; 
+
+
+    if (facebookShareBtn) {
+        facebookShareBtn.addEventListener('click', () => {
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank', 'width=600,height=400');
+        });
+    }
+
+    if (twitterShareBtn) {
+        twitterShareBtn.addEventListener('click', () => {
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle + ' - ' + shareDescription)}&url=${encodeURIComponent(shareUrl)}`, '_blank', 'width=600,height=400');
+        });
+    }
+
+    if (kakaoShareBtn) {
+        kakaoShareBtn.addEventListener('click', () => {
+            if (Kakao.isInitialized()) {
+                Kakao.Share.sendDefault({
+                    objectType: 'feed',
+                    content: {
+                        title: shareTitle,
+                        description: shareDescription,
+                        imageUrl: ogImageUrl, 
+                        link: {
+                            mobileWebUrl: shareUrl,
+                            webUrl: shareUrl,
+                        },
+                    },
+                    buttons: [
+                        {
+                            title: '웹으로 보기',
+                            link: {
+                                mobileWebUrl: shareUrl,
+                                webUrl: shareUrl,
+                            },
+                        },
+                    ],
+                });
+            } else {
+                alert('카카오톡 공유 기능을 초기화할 수 없습니다. JavaScript 키를 확인해주세요.');
+            }
+        });
     }
 
 

@@ -189,6 +189,68 @@ p {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
+/* Social Share Section Styles */
+#share-section {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+#share-section h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* 버튼 사이 간격 */
+    flex-wrap: wrap; /* 작은 화면에서 줄바꿈 */
+}
+
+.sns-share-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    min-width: 120px; /* 버튼 최소 너비 */
+}
+
+/* Specific button colors */
+#facebook-share-btn {
+    background-color: #1877f2; /* Facebook Blue */
+}
+
+#facebook-share-btn:hover {
+    background-color: #166fe5;
+    transform: translateY(-2px);
+}
+
+#twitter-share-btn {
+    background-color: #1da1f2; /* Twitter Blue */
+}
+
+#twitter-share-btn:hover {
+    background-color: #1a94e6;
+    transform: translateY(-2px);
+}
+
+#kakao-share-btn {
+    background-color: #fee500; /* Kakao Yellow */
+    color: #3c1e1e; /* Dark Brown for text */
+}
+
+#kakao-share-btn:hover {
+    background-color: #f7df00;
+    transform: translateY(-2px);
+}
+
+
 /* Map Section Styles */
 #map-section h2 {
     margin-bottom: 1rem;
